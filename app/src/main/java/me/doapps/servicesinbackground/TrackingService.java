@@ -12,7 +12,6 @@ import android.util.Log;
 public class TrackingService extends Service {
     private String TAG = "SERVICE";
     private boolean flag;
-    private static int count;
 
     @Override
     public void onCreate() {
@@ -46,12 +45,14 @@ public class TrackingService extends Service {
             @Override
             public void run() {
                 while (!flag) {
-                    Log.e(TAG, (count++) + "");
+                    Log.e(TAG, MainActivity.count + "");
+                    MainActivity.count = MainActivity.count + 1;
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
                 }
             }
         }).start();
